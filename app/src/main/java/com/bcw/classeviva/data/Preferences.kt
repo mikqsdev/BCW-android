@@ -73,6 +73,8 @@ class Preferences(private val store: SharedPreferences) {
             // Solo su Android, solo su questo dispositivo.
             "dynamicColor" to JsonPrimitive(false),
             "liveUpdates" to JsonPrimitive(true),
+            // Come su iOS: avviso di una versione nuova su GitHub (Impostazioni › Generale). Non si sincronizza.
+            "updateAlerts" to JsonPrimitive(true),
         )
         val appearanceKeys = listOf("accentColor", "colorStyle", "contrast", "corners", "motion", "roundedText")
     }
@@ -149,6 +151,7 @@ class Preferences(private val store: SharedPreferences) {
     val useLock: Boolean get() = bool("useLock")
     val dynamicColor: Boolean get() = bool("dynamicColor")
     val liveUpdates: Boolean get() = bool("liveUpdates")
+    val updateAlerts: Boolean get() = bool("updateAlerts")
 
     /** La voce si sincronizza con l'account BCW (scelta solo per questo dispositivo). */
     fun syncs(category: SyncCategory): Boolean = category.name !in strings("unsyncedCategories")
